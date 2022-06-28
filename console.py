@@ -9,6 +9,7 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """a"""
     prompt = '(hbnb)'
+    """a"""
 
 
     
