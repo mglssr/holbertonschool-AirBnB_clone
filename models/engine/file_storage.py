@@ -4,6 +4,8 @@
 
 import json
 import os
+from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -37,4 +39,8 @@ class FileStorage:
             with open(self.__file_path) as f:
                 objts = json.load(f)
                 for key, value in objts.items():
+<<<<<<< HEAD
                     self.new
+=======
+                    self.new(eval(value['__class__'])(**value))
+>>>>>>> d2a33db3305b3b6a8a8308c7172c62b6c0b6736b
