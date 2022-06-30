@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             if a_list[0] in self.classes:
                 print("** instance id missing **")
             else:
-                print("** class name missing **")
+                print("** class doesn't exist **")
         else:
             if a_list[0] in self.classes:
                 key = f"{a_list[0]}.{a_list[1]}"
@@ -107,7 +107,39 @@ class HBNBCommand(cmd.Cmd):
         id by adding or updating attribute (save the change
         into the JSON file)"""
         aux_dict = storage.all()
-        
+        a_list = arg.split()
+        if len(a_list) < 1:
+            print("** class name missing **")
+
+        elif len(a_list) == 1:
+            if a_list[0] in self.classes:
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        elif len(a_list) == 2:
+            if a_list[0] in self.classes: 
+                key = f"{a_list[0]}.{a_list[1]}"
+                if key not in aux_dict:
+                    print("** no instance found **")
+                else:
+                    print("** attribute name missing **")
+            else:
+                print("** class doesn't exist **")
+        elif len(a_list) == 3:
+            if a_list[0] in self.classes:
+                key = f"{a_list[0]}.{a_list[1]}"
+                if key not in aux_dict:
+                    print("** no instance found **")
+                else:
+                    print("** value missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            key = f"{a_list[0]}.{a_list[1]}"
+            if key in aux_dict:
+                obj = aux_dict[key]
+                setattr(obj, a_list[2], eval(a_list[3]))
+
 
 if __name__ == '__main__': 
     HBNBCommand().cmdloop()
