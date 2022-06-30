@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
             print(f"** class name missing **")
         a_list = arg.split()
         if a_list[0] in self.classes:
-            to_get = getattr(sys.modules[__name__], arg)
+            to_get = getattr(sys.modules[__name__], a_list[0])
             n_inst = to_get()
             print(n_inst.id)
             n_inst.save()
@@ -89,8 +89,10 @@ class HBNBCommand(cmd.Cmd):
             v_list=[]
             for key in aux_dict:
                 elem = aux_dict[key]
+                elem = str(elem)
                 v_list.append(elem)
             print(v_list)
+
 
 if __name__ == '__main__': 
     HBNBCommand().cmdloop()
