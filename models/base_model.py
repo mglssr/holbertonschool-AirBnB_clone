@@ -17,9 +17,11 @@ class BaseModel:
                 if key == "id":
                     self.id = value
                 elif key == "created_at":
-                    self.created_at = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.created_at = datetime.strptime(value,
+                                                        '%Y-%m-%dT%H:%M:%S.%f')
                 elif key == "updated_at":
-                    self.updated_at = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.updated_at = datetime.strptime(value,
+                                                        '%Y-%m-%dT%H:%M:%S.%f')
                 elif key == "__class__":
                     pass
                 else:

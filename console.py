@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""program called console.py that contains the entry 
+"""Program called console.py that contains the entry
 point of the command interpreter"""
 
 
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -13,21 +14,24 @@ from models.place import Place
 from models.review import Review
 from models import storage
 
-class HBNBCommand(cmd.Cmd):
-    """a"""
-    prompt = '(hbnb) '
 
+class HBNBCommand(cmd.Cmd):
+    """HBNBCommand class that"""
+    prompt = '(hbnb) '
     classes = {"BaseModel": BaseModel, "User": User, "State": State,
-    "Amenity": Amenity, "City": City, "Place": Place, "Review": Review}
+               "Amenity": Amenity, "City": City, "Place": Place,
+               "Review": Review}
 
     def do_quit(self, arg):
+        """quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):
+        """EOF (Ctrl+D) to exit the program"""
         return True
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, 
+        """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id"""
         a_list = arg.split()
         if len(arg) < 1:
@@ -65,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and
         id (save the change into the JSON file)"""
-        a_list =arg.split()
+        a_list = arg.split()
         if len(a_list) < 1:
             print("** class name missing **")
         elif len(a_list) == 1:
@@ -110,14 +114,13 @@ class HBNBCommand(cmd.Cmd):
         a_list = arg.split()
         if len(a_list) < 1:
             print("** class name missing **")
-
         elif len(a_list) == 1:
             if a_list[0] in self.classes:
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
         elif len(a_list) == 2:
-            if a_list[0] in self.classes: 
+            if a_list[0] in self.classes:
                 key = f"{a_list[0]}.{a_list[1]}"
                 if key not in aux_dict:
                     print("** no instance found **")
@@ -141,5 +144,5 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, a_list[2], eval(a_list[3]))
 
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
