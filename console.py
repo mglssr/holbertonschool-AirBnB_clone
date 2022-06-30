@@ -29,10 +29,10 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """Creates a new instance of BaseModel, 
         saves it (to the JSON file) and prints the id"""
+        a_list = arg.split()
         if len(arg) < 1:
             print("** class name missing **")
-        a_list = arg.split()
-        if a_list[0] in self.classes:
+        elif a_list[0] in self.classes:
             to_get = getattr(sys.modules[__name__], a_list[0])
             n_inst = to_get()
             print(n_inst.id)
@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         a_list = arg.split()
         if len(a_list) < 1:
             print("** class name missing **")
-        if len(a_list) == 1:
+        elif len(a_list) == 1:
             if a_list[0] in self.classes:
                 print("** instance id missing **")
             else:
@@ -72,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             if a_list[0] in self.classes:
                 print("** instance id missing **")
             else:
-                print("** class name missing **")
+                print("** class doesn't exist **")
         else:
             if a_list[0] in self.classes:
                 aux_dict = storage.all()
