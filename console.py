@@ -102,6 +102,12 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    def do_update(self, arg):
+        """Updates an instance based on the class name and
+        id by adding or updating attribute (save the change
+        into the JSON file)"""
+        aux_dict = storage.all()
+        
 
 if __name__ == '__main__': 
     HBNBCommand().cmdloop()
