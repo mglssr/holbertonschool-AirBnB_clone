@@ -143,6 +143,16 @@ class HBNBCommand(cmd.Cmd):
                 obj = aux_dict[key]
                 setattr(obj, a_list[2], eval(a_list[3]))
 
+    def do_count(self, arg):
+        """Retrieve the number of instances of a class"""
+        counter = 0
+        aux_dict = storage.all()
+        a_list = arg.split()
+        for key in aux_dict:
+            if (a_list[0] in key):
+                counter += 1
+        print(counter)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
