@@ -49,6 +49,9 @@ class HBNBCommand(cmd.Cmd):
                     self.do_show(f"{a_list[0]} {new_alist[1]}")
                 elif new_alist[0] == "destroy":
                     self.do_destroy(f"{a_list[0]} {new_alist[1]}")
+                elif new_alist[0] == "update":
+                    up_str = new_alist[1].replace(',', "")
+                    self.do_update(f"{a_list[0]} {up_str}")
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
