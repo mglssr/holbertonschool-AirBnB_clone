@@ -47,16 +47,17 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id"""
-        a_list = arg.split()
         if len(arg) < 1:
             print("** class name missing **")
-        elif a_list[0] in self.classes:
-            to_get = getattr(sys.modules[__name__], a_list[0])
-            n_inst = to_get()
-            print(n_inst.id)
-            n_inst.save()
         else:
-            print("** class doesn't exist **")
+            a_list = arg.split()
+            if a_list[0] in self.classes:
+                to_get = getattr(sys.modules[__name__], a_list[0])
+                n_inst = to_get()
+                print(n_inst.id)
+                n_inst.save()
+            else:
+                print("** class doesn't exist **")
 
     def do_show(self, arg):
         """Prints the string representation of an
@@ -84,36 +85,39 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and
         id (save the change into the JSON file)"""
-        a_list = arg.split()
-        if len(a_list) < 1:
+        if len(arg) < 1:
             print("** class name missing **")
-        elif len(a_list) == 1:
-            if a_list[0] in self.classes:
-                print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
         else:
-            if a_list[0] in self.classes:
-                aux_dict = storage.all()
-                key = f"{a_list[0]}.{a_list[1]}"
-                if key in aux_dict:
-                    del aux_dict[key]
-                    storage.save()
+            a_list = arg.split()
+            if len(a_list) == 1:
+                if a_list[0] in self.classes:
+                    print("** instance id missing **")
                 else:
-                    print("** no instance found **")
+                    print("** class doesn't exist **")
+            else:
+                if a_list[0] in self.classes:
+                    aux_dict = storage.all()
+                    key = f"{a_list[0]}.{a_list[1]}"
+                    if key in aux_dict:
+                        del aux_dict[key]
+                        aux_dict.save()
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** class doesn't exist **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances
         based or not on the class name"""
-        a_list = arg.split()
         aux_dict = storage.all()
         v_list = []
-        if len(a_list) < 1:
+        if len(arg) < 1:
             for key in aux_dict:
                 elem = aux_dict[key]
                 v_list.append(str(elem))
             print(v_list)
         else:
+            a_list = arg.split()
             if a_list[0] in self.classes:
                 for key, value in aux_dict.items():
                     if a_list[0] == value.__class__.__name__:
@@ -159,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
             if key in aux_dict:
                 obj = aux_dict[key]
                 setattr(obj, a_list[2], eval(a_list[3]))
-                storage.save()
+                obj.save()
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
