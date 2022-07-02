@@ -22,6 +22,10 @@ class HBNBCommand(cmd.Cmd):
                "Amenity": Amenity, "City": City, "Place": Place,
                "Review": Review}
 
+    def emptyline(self):
+        """Dont' execute anything if an empty line + ENTER are typed"""
+        pass
+
     def do_quit(self, arg):
         """quit command to exit the program"""
         return True
