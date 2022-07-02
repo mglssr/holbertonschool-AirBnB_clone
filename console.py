@@ -35,7 +35,6 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     """def precmd(self, arg):
-        """XD"""
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
