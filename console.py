@@ -95,6 +95,8 @@ class HBNBCommand(cmd.Cmd):
                 if key in aux_dict:
                     del aux_dict[key]
                     storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances
