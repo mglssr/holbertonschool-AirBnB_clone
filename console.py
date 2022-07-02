@@ -22,6 +22,10 @@ class HBNBCommand(cmd.Cmd):
                "Amenity": Amenity, "City": City, "Place": Place,
                "Review": Review}
 
+    def emptyline(self):
+        """Dont' execute anything if an empty line + ENTER are typed"""
+        pass
+
     def do_quit(self, arg):
         """quit command to exit the program"""
         return True
@@ -30,8 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF (Ctrl+D) to exit the program"""
         return True
 
-    def default(self, arg):
-        """XD"""
+    """def precmd(self, arg):
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
@@ -39,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
                     self.do_all(a_list[0])
             if a_list[1] == "count()":
                 if a_list[0] in self.classes:
-                    self.do_count(a_list[0])
+                    self.do_count(a_list[0])"""
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
@@ -58,24 +61,25 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Prints the string representation of an
         instance based on the class name and id"""
-        a_list = arg.split()
-        if len(a_list) < 1:
+        if len(arg) < 1:
             print("** class name missing **")
-        elif len(a_list) == 1:
-            if a_list[0] in self.classes:
-                print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
         else:
-            if a_list[0] in self.classes:
-                key = f"{a_list[0]}.{a_list[1]}"
-                aux_dict = storage.all()
-                if key in aux_dict:
-                    print(aux_dict[key])
+            a_list = arg.split()
+            if len(a_list) == 1:
+                if a_list[0] in self.classes:
+                    print("** instance id missing **")
                 else:
-                    print("** no instance found **")
+                    print("** class doesn't exist **")
             else:
-                print("** class doesn't exist **")
+                if a_list[0] in self.classes:
+                    key = f"{a_list[0]}.{a_list[1]}"
+                    aux_dict = storage.all()
+                    if key in aux_dict:
+                        print(aux_dict[key])
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** class doesn't exist **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and
@@ -155,6 +159,7 @@ class HBNBCommand(cmd.Cmd):
             if key in aux_dict:
                 obj = aux_dict[key]
                 setattr(obj, a_list[2], eval(a_list[3]))
+                storage.save()
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
