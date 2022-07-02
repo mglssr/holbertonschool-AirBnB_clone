@@ -39,11 +39,16 @@ class HBNBCommand(cmd.Cmd):
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
-                if a_list[0] in self.classes:
-                    self.do_all(a_list[0])
-            if a_list[1] == "count()":
-                if a_list[0] in self.classes:
-                    self.do_count(a_list[0])
+                self.do_all(a_list[0])
+            elif a_list[1] == "count()":
+                self.do_count(a_list[0])
+            else:
+                new_alist = a_list[1].split('(')
+                new_alist[1] = new_alist[1][:-1]
+                if new_alist[0] == "show":
+                    self.do_show(f"{a_list[0]} {new_alist[1]}")
+                elif new_alist[0] == "destroy":
+                    self.do_destroy(f"{a_list[0]} {new_alist[1]}")
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
