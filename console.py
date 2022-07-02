@@ -28,11 +28,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """quit command to exit the program"""
-        return True
+        sys.exit()
 
     def do_EOF(self, arg):
         """EOF (Ctrl+D) to exit the program"""
-        return True
+        print()
+        sys.exit()
 
     """def precmd(self, arg):
         a_list = arg.split('.')
@@ -156,8 +157,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = f"{a_list[0]}.{a_list[1]}"
             if key in aux_dict:
-                obj = aux_dict.get(key)
-                setattr(obj, a_list[2], a_list[3])
+                obj = aux_dict[key]
+                setattr(obj, a_list[2], eval(a_list[3]))
                 storage.save()
 
     def do_count(self, arg):
