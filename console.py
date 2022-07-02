@@ -54,8 +54,8 @@ class HBNBCommand(cmd.Cmd):
             if a_list[0] in self.classes:
                 to_get = getattr(sys.modules[__name__], a_list[0])
                 n_inst = to_get()
-                print(n_inst.id)
                 n_inst.save()
+                print(n_inst.id)
             else:
                 print("** class doesn't exist **")
 
