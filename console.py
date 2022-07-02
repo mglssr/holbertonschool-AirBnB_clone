@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF (Ctrl+D) to exit the program"""
         return True
 
-    """def precmd(self, arg):
+    def default(self, arg):
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
                     self.do_all(a_list[0])
             if a_list[1] == "count()":
                 if a_list[0] in self.classes:
-                    self.do_count(a_list[0])"""
+                    self.do_count(a_list[0])
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
