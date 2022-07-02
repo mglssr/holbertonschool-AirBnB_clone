@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
                     key = f"{a_list[0]}.{a_list[1]}"
                     if key in aux_dict:
                         del aux_dict[key]
-                        aux_dict.save()
+                        storage.save()
                     else:
                         print("** no instance found **")
                 else:
