@@ -157,7 +157,8 @@ class HBNBCommand(cmd.Cmd):
             key = f"{a_list[0]}.{a_list[1]}"
             if key in aux_dict:
                 obj = aux_dict[key]
-                setattr(obj, a_list[2], eval(a_list[3]))
+                setattr(obj, a_list[2], a_list[3])
+                storage.save()
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
