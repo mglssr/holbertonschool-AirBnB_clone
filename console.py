@@ -35,6 +35,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def default(self, arg):
+        """XD"""
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
@@ -160,10 +161,16 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             key = f"{a_list[0]}.{a_list[1]}"
-            if key in aux_dict:
-                obj = aux_dict[key]
-                setattr(obj, a_list[2], eval(a_list[3]))
-                obj.save()
+            if a_list[0] in self.classes:
+                if key not in aux_dict:
+                    print("** no instance found **")
+                else:
+                    if key in aux_dict:
+                        obj = aux_dict[key]
+                        setattr(obj, a_list[2], eval(a_list[3]))
+                        obj.save()
+            else:
+                print("** class doesn't exist **")
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
