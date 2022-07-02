@@ -156,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = f"{a_list[0]}.{a_list[1]}"
             if key in aux_dict:
-                obj = aux_dict[key]
+                obj = aux_dict.get(key)
                 setattr(obj, a_list[2], a_list[3])
                 storage.save()
 
