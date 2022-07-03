@@ -59,7 +59,8 @@ class HBNBCommand(cmd.Cmd):
                             new_alist[1] = new_alist[1].replace(chars[x], " ")
                         up_dict = new_alist[1].split()
                         for x in range(1, len(up_dict), 2):
-                            self.do_update(f"{a_list[0]} {up_dict[0]} {up_dict[x]} \"{up_dict[x + 1]}\"")
+                            self.do_update(f"{a_list[0]} {up_dict[0]} \
+                                    {up_dict[x]} \"{up_dict[x + 1]}\"")
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
