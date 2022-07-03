@@ -3,7 +3,6 @@
 
 
 import unittest
-import models
 import uuid
 from models.base_model import BaseModel
 from models import storage
