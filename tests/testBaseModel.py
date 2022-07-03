@@ -51,7 +51,7 @@ class TestBaseModel(unittest.TestCase):
         storage.reload()
         self.assertEqual(c.__dict__['updated_at'], new_updated_at)
 
-    def test_to_dict()
+    def test_to_dict(self):
         """tests to_dict method"""
         d = BaseModel()
         ddic = d.to_dict()
