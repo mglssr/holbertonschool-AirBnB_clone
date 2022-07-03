@@ -3,7 +3,6 @@
 
 
 import unittest
-import uuid
 from models.base_model import BaseModel
 from models import storage
 from datetime import datetime
@@ -61,4 +60,4 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(ddic['__class__'], d.__class__.__name__)
     
 if __name__ == '__main__':
-    unnitest.main()
+    unittest.main()

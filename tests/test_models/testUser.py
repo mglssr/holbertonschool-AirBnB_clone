@@ -5,18 +5,19 @@
 import unittest
 import models
 from models.user import User
+from models.base_model import BaseModel
 from models import storage
 from datetime import datetime
 
 
-class TestBaseModel(unittest.TestCase):
+class TestUser(unittest.TestCase):
     """Unittests for the User class"""
 
-    def issubclass(self):
+    def test_subclass(self):
         """checks is User is a subclass of BaseModel"""
-        self.assertEqual(User, BaseModel)
+        self.assertTrue(issubclass(User, BaseModel))
 
-    def test_inst(self):
+    def test_instance(self):
         """Tests if the instances of User are correctly created"""
         User1 = User()
         User2 = User()
@@ -42,4 +43,4 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(my_User.last_name, "")
 
 if __name__ == '__main__':
-    unnitest.main()
+    unittest.main()
