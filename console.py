@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def default(self, arg):
-        """XD"""
+        """Aditional commands"""
         a_list = arg.split('.')
         if len(a_list) == 2:
             if a_list[1] == "all()":
