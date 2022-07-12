@@ -5,12 +5,7 @@ body{
 	font-size: 14px;
 	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	}
-.container{
-		position: relative;
-		max-width: 1000px;
-		margin: 30px auto;
-		}
-button{
+	section.filters button{
 		position: absolute;
 		font-size: 18px;
 		background-color: #FF5A5F;
@@ -21,11 +16,9 @@ button{
 		margin-right: 30px;
 		right: 0;
 		top: 50%;
+		border-radius: 4px;
 		transform: translateY(-50%);
+	}
+	section.filters button:hover{
+		opacity: 0.9;
 		}
-button:hover{
-				opacity: 0.9;
-				}
-.locations{
-		
-}

@@ -7,6 +7,9 @@ footer {
     bottom: 0;
     border-top:1px solid;
     border-top-color: #CCCCCC;
-    text-align: center;
-    color:black;     
     }
+footer p{
+    text-align: center;
+    color:black;
+    transform: translateY(50%);
+}
